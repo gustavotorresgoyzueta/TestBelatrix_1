@@ -1,0 +1,118 @@
+package com.project.pom;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class SearchSpecificShoes extends Base {
+	
+	private WebDriver driver;
+	
+	By tbxSearchLocator = By.id("gh-ac"); //tipo : text
+	By btnSearchLocator = By.id("gh-btn"); // tipo : submit
+	By searchPageLocator = By.xpath("//div[@class='srp-controls__row-cells']//span[@class='BOLD']']"); // mensaje que se muestra luego de cargar la pagina para buscar 
+	By cbxPUMALocator = By.xpath("//input[@aria-label='PUMA']");
+	//By cbxSizeLocator = By.xpath("//input[@aria-label='10']");
+	By lnkSizeLocator = By.xpath("//li[@class='srp-carousel-list__item--large-items']//*[text()='10']");	
+	By searchNumberLocator = By.xpath("//div[@class='srp-controls__row-cells']//span[@class='BOLD']");
+	
+	//By dropdownlistbtn = By.xpath("//button[@aria-labelledby='w8_btn_label srp-sort-applied']");
+	//By dropdownlistbtn = By.xpath("//button[@aria-controls='w8']");
+	By btndropdownlist = By.xpath("//button[@aria-controls='w8']");   // x-flyout__button
+	
+	//By btnOrder = By.xpath("//button[@aria-labelledby='w8_btn_label srp-sort-applied']");
+	By comboOrderAscendant = By.xpath("//li[@class='btn']//a//*[text()='Precio + Envío: más bajo primero']");
+	
+	public SearchSpecificShoes(WebDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	} // heredamos de nuestra clase Base
+	
+	
+	public void SearchShoesWord() throws InterruptedException{
+		//Thread.sleep(2000);
+		
+		type("shoes",tbxSearchLocator);
+		click(btnSearchLocator);
+		//TIMER DE 15 SEGUNDOS PQ CARGA VARIAS LIBRERIAS
+		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); //espera implicita
+		
+		click(cbxPUMALocator);
+		Thread.sleep(4000);
+		click(lnkSizeLocator);
+		
+		//if (isDisplayed(searchPageLocator)) {
+			//Eligiendo la marca Puma
+			//click(cbxPUMALocator);
+
+			
+			//TIMER DE 15 SEGUNDOS PQ CARGA la busqueda
+			//WebDriverWait explicit_wait = new WebDriverWait(driver,10);
+			//explicit_wait.until(ExpectedConditions.);
+			//driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS); //espera implicita
+			
+			//click(lnkSizeLocator);
+			//click(cbxSizeLocator);
+			//TIMER DE 15 SEGUNDOS PQ CARGA la busqueda
+			//driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS); //espera implicita
+		//}
+		//else {
+		//	System.out.println("La busqueda no se ha realizado");
+		//}
+		
+		
+		//if (isDisplayed(searchPageLocator)) {
+		//	//click(lnkSizeLocator);
+			
+		//}
+		//else {
+		//	System.out.println("La busqueda no se ha realizado");
+		//}
+		
+	}
+	
+	public String Message() {
+		List<WebElement> resultados = findElements(searchNumberLocator);
+		System.out.println("" + getText(resultados.get(0)) + " " + "resultados para shoes");
+		return getText(resultados.get(0));
+
+	}
+	
+	public void OrderByPriceAscendant() throws InterruptedException {
+		//Thread.sleep(4000);
+		//driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		
+		//WebElement menu = findElement(dropdownlistbtn);
+		
+		
+		/**para moverse***/
+		Actions actions = new Actions(driver);
+		Thread.sleep(4000);
+		WebElement menu = findElement(btndropdownlist);
+		Thread.sleep(3000);
+		//actions.moveToElement(menu); //.build().perform();
+		System.out.println("llegue aqui");
+		/****************/
+		
+		
+		
+		//Actions actions = new Actions(driver);
+		//actions.moveToElement(findElement(dropdownlistbtn)).build().perform();
+		//findElement(By.linkText("Precio + Envío: más bajo primero"));
+		
+		//click(dropdownlistbtn);
+		//click(comboOrderAscendant);
+		//Actions action = new Actions(driver);
+		//WebElement we = driver.findElement(btnOrder);
+		//action.moveToElement(we).build().perform(); //moveToElement(driver.findElement(By.xpath("comboOrderAscendant"))).click().build().perform();
+		
+		
+		
+	}
+
+}

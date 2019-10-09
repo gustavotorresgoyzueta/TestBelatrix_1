@@ -1,0 +1,18 @@
+package com.belatrix.exercise;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GoogleSearchTests {
+	
+	private WebDriver driver;
+	
+	@Before
+	public void setUp() {
+		
+		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+	}
+
+}

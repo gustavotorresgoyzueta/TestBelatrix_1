@@ -1,0 +1,38 @@
+package com.project.pom;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+public class Search_Test {
+	
+	private WebDriver driver;
+	SearchSpecificShoes SearchSpecificShoesPage;
+
+	@Before
+	public void setUp() throws Exception {
+		SearchSpecificShoesPage = new SearchSpecificShoes(driver);
+		driver = SearchSpecificShoesPage.chromeDriverConnection();
+		driver.manage().window().maximize();
+		SearchSpecificShoesPage.visit("https://www.ebay.com");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		//driver.quit();
+	}
+
+	@Test
+	public void test() throws InterruptedException {
+		SearchSpecificShoesPage.SearchShoesWord();
+		//SearchSpecificShoesPage.Message();
+		//fail("Not yet implemented");
+		
+		
+		
+	}
+
+}
